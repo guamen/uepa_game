@@ -1,5 +1,5 @@
 # UEPA Game Using JavaScript
-Vamos a desquitarnosla
+Vamos a jugar...
 
 Ojo: no jquery ni frameworks
 
