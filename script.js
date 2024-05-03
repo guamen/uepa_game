@@ -10,6 +10,9 @@ const gravity = 0.7;
 
 let gameEnd = false;
 
+let frameTopLeft = -5;
+let frameTopRight = 965;
+
 const background = new Sprite({
   position: {
     x: 0,
@@ -185,11 +188,15 @@ function animate() {
   // player movement
 
   if (keys.a.pressed && player.lastKey === "a") {
-    player.velocity.x = -5;
-    player.switchSprite("run");
+    if (player.position.x >= frameTopLeft) {
+      player.velocity.x = -5;
+      player.switchSprite("run");
+    }
   } else if (keys.d.pressed && player.lastKey === "d") {
-    player.velocity.x = 5;
-    player.switchSprite("run");
+    if (player.position.x <= frameTopRight) {
+      player.velocity.x = 5;
+      player.switchSprite("run");
+    }
   } else {
     player.switchSprite("idle");
   }
@@ -205,17 +212,16 @@ function animate() {
 
   if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
     //console.log(enemy.position);
-    if(enemy.position.x >= -5){   
+    if (enemy.position.x >= frameTopLeft) {
       enemy.velocity.x = -5;
       enemy.switchSprite("run");
     }
-    
   } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight") {
     //console.log(enemy.position);
-    if(enemy.position.x < 965){
+    if (enemy.position.x <= frameTopRight) {
       enemy.velocity.x = 5;
       enemy.switchSprite("run");
-    }    
+    }
   } else {
     enemy.switchSprite("idle");
   }
@@ -271,23 +277,20 @@ function animate() {
     enemy.isAttacking = false;
   }
 
-
-
   // end game based on health
   if (enemy.health <= 0 || player.health <= 0) {
-	if(!gameEnd){
-		gameEnd = true;
-		determineWinner({ player, enemy, timerId });
-		setInterval(RestartGame, 5000);
-	}
+    if (!gameEnd) {
+      gameEnd = true;
+      determineWinner({ player, enemy, timerId });
+      setInterval(RestartGame, 5000);
+    }
   }
 }
 
-
 function RestartGame() {
-	if (confirm("Restart Game?") == true) {
-		window.location="index.html";
-	}
+  if (confirm("Restart Game?") == true) {
+    window.location = "index.html";
+  }
 }
 
 animate();
