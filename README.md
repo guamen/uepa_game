@@ -7,5 +7,5 @@ Ojo: no jquery ni frameworks
 ## Clone This Repository
 
 ```
-git clone https://github.com/guamen/uepa_game
+git clone https://github.com/guamen/uepa_game.git
 ```
