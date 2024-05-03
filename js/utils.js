@@ -29,6 +29,26 @@ function decreaseTimer() {
     timerId = setTimeout(decreaseTimer, 1000)
     timer--
     document.querySelector('#timer').innerHTML = timer
+
+    //todo: mostrar GA si hay pasado X segundos sin actividad
+    let currentDate = new Date().toISOString();
+    let currentDateFormatted = new Date(currentDate);
+    var lastDate = new Date(lastHitDateTime);
+    var differenceMiliseconds = (currentDateFormatted - lastDate);
+    console.log(differenceMiliseconds);
+    if(differenceMiliseconds >= secondsToCallGA)
+      {
+        console.log("call GA");
+        lastHitDateTime = new Date().toISOString();
+
+        var elem = document.createElement("img");
+        elem.setAttribute("id", "gabriel_urgente");
+        document.getElementById("playerHealth").appendChild(elem);
+        lastHitDateTime = new Date().toISOString();
+      }
+  }
+  else {
+    lastHitDateTime = null;    
   }
 
   if (timer === 0) {

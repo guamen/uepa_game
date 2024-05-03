@@ -10,8 +10,15 @@ const gravity = 0.7;
 
 let gameEnd = false;
 
+//definir los limites horizontales
 let frameTopLeft = -5;
 let frameTopRight = 965;
+
+//almacenar fecha y hora del ultimo golpe
+var lastHitDateTime = new Date().toISOString();
+
+//definir tiempo sin golpes para llamar a GA (milisegundos)
+var secondsToCallGA = 10000;
 
 const background = new Sprite({
   position: {
@@ -177,6 +184,7 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
   background.update();
   shop.update();
+ 
   c.fillStyle = "rgba(255, 255, 255, 0.15)";
   c.fillRect(0, 0, canvas.width, canvas.height);
   player.update();
@@ -289,6 +297,7 @@ function animate() {
 
 function RestartGame() {
   if (confirm("Restart Game?") == true) {
+    lastHitDateTime = null;
     window.location = "index.html";
   }
 }
