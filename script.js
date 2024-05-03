@@ -202,12 +202,20 @@ function animate() {
   }
 
   // Enemy movement
+
   if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
-    enemy.velocity.x = -5;
-    enemy.switchSprite("run");
+    //console.log(enemy.position);
+    if(enemy.position.x >= -5){   
+      enemy.velocity.x = -5;
+      enemy.switchSprite("run");
+    }
+    
   } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight") {
-    enemy.velocity.x = 5;
-    enemy.switchSprite("run");
+    //console.log(enemy.position);
+    if(enemy.position.x < 965){
+      enemy.velocity.x = 5;
+      enemy.switchSprite("run");
+    }    
   } else {
     enemy.switchSprite("idle");
   }
