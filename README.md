@@ -3,5 +3,5 @@
 ## Clone This Repository
 
 ```
-git clone https://github.com/MilanLizriadi/fighting-game.git
+git clone https://github.com/guamen/uepa_game
 ```
